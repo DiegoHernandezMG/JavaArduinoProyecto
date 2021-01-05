@@ -17,6 +17,7 @@ public class JavaArduinoProyecto {
     public static void main(String[] args) {
         System.out.println("Hola");
         System.out.println("Holaaaaaaaaaa");
+        System.out.println("Huevooos");
     }
     
 }
