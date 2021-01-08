@@ -15,9 +15,7 @@ public class JavaArduinoProyecto {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hola");
-        System.out.println("Holaaaaaaaaaa");
-        System.out.println("Huevooos");
+        
     }
     
 }
