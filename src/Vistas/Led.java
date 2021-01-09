@@ -22,7 +22,7 @@ public class Led extends javax.swing.JFrame {
         initComponents();
         try {
             Arduino.getPortsAvailable();
-            Arduino.arduinoTX("/dev/ttyACM0", 9600);
+            Arduino.arduinoTX("/dev/ttyUSB0", 9600);
         } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -39,9 +39,18 @@ public class Led extends javax.swing.JFrame {
 
         BotonEncender = new javax.swing.JButton();
         BotonApagar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jToggle_EA = new javax.swing.JToggleButton();
+        jToggle_VI = new javax.swing.JToggleButton();
+        jSlider_IL = new javax.swing.JSlider();
+        jButton_Regresar = new javax.swing.JButton();
+        jButton_Salir = new javax.swing.JButton();
+        jLabel_MI = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel_CI = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BotonEncender.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         BotonEncender.setText("Encender");
@@ -50,6 +59,7 @@ public class Led extends javax.swing.JFrame {
                 BotonEncenderActionPerformed(evt);
             }
         });
+        getContentPane().add(BotonEncender, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 177, 121, 79));
 
         BotonApagar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         BotonApagar.setText("Apagar");
@@ -58,34 +68,64 @@ public class Led extends javax.swing.JFrame {
                 BotonApagarActionPerformed(evt);
             }
         });
+        getContentPane().add(BotonApagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 177, 121, 79));
 
-        jButton1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jButton1.setText("ENCENDER/APAGAR");
+        jLabel1.setFont(new java.awt.Font("URW Gothic L", 0, 36)); // NOI18N
+        jLabel1.setText("TESTEO DE LEDS");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 21, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(104, 104, 104)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonEncender, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonEncender, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
-                .addComponent(BotonApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
-        );
+        jToggle_EA.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
+        jToggle_EA.setText("ENCENDER/APAGAR");
+        jToggle_EA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggle_EAActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jToggle_EA, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 118, -1, -1));
+
+        jToggle_VI.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
+        jToggle_VI.setText("VARIAR INTENSIDAD ");
+        jToggle_VI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggle_VIActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jToggle_VI, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 299, 317, -1));
+
+        jSlider_IL.setMajorTickSpacing(50);
+        jSlider_IL.setMaximum(255);
+        jSlider_IL.setPaintLabels(true);
+        jSlider_IL.setPaintTicks(true);
+        jSlider_IL.setValue(0);
+        jSlider_IL.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider_ILStateChanged(evt);
+            }
+        });
+        getContentPane().add(jSlider_IL, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 350, 500, 50));
+
+        jButton_Regresar.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
+        jButton_Regresar.setText("REGRESAR");
+        getContentPane().add(jButton_Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 486, -1, -1));
+
+        jButton_Salir.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
+        jButton_Salir.setText("SALIR");
+        jButton_Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SalirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 486, -1, -1));
+
+        jLabel_MI.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
+        getContentPane().add(jLabel_MI, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
+        jLabel2.setText("Intensidad:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, -1, -1));
+
+        jLabel_CI.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
+        getContentPane().add(jLabel_CI, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -109,6 +149,53 @@ public class Led extends javax.swing.JFrame {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BotonApagarActionPerformed
+
+    private void jToggle_EAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggle_EAActionPerformed
+        if(jToggle_EA.isSelected()){
+            jToggle_VI.setEnabled(false);
+            jSlider_IL.setEnabled(false);
+            jLabel_MI.setEnabled(false);
+            jLabel2.setEnabled(false);
+        }
+        else{
+            jToggle_VI.setEnabled(true);
+            jSlider_IL.setEnabled(true);
+            jLabel_MI.setEnabled(true);
+            jLabel2.setEnabled(true);
+        }
+    }//GEN-LAST:event_jToggle_EAActionPerformed
+
+    private void jButton_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton_SalirActionPerformed
+
+    private void jToggle_VIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggle_VIActionPerformed
+        if(jToggle_VI.isSelected()){
+            jToggle_EA.setEnabled(false);
+            BotonEncender.setEnabled(false);
+            BotonApagar.setEnabled(false);
+        }
+        else{
+            jToggle_EA.setEnabled(true);
+            BotonEncender.setEnabled(true);
+            BotonApagar.setEnabled(true);
+        }
+    }//GEN-LAST:event_jToggle_VIActionPerformed
+
+    private void jSlider_ILStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider_ILStateChanged
+        int valor = jSlider_IL.getValue();
+        String valor_t = Integer.toString(valor);
+        jLabel_CI.setText(valor_t);
+        
+        try {
+            System.out.println(valor_t);
+            Arduino.sendData(valor_t);
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SerialPortException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jSlider_ILStateChanged
 
     /**
      * @param args the command line arguments
@@ -148,6 +235,14 @@ public class Led extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonApagar;
     private javax.swing.JButton BotonEncender;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton_Regresar;
+    private javax.swing.JButton jButton_Salir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel_CI;
+    private javax.swing.JLabel jLabel_MI;
+    private javax.swing.JSlider jSlider_IL;
+    private javax.swing.JToggleButton jToggle_EA;
+    private javax.swing.JToggleButton jToggle_VI;
     // End of variables declaration//GEN-END:variables
 }
