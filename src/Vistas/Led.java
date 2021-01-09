@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package Vistas;
-
+import com.panamahitek.ArduinoException;
+import com.panamahitek.PanamaHitek_Arduino;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jssc.SerialPortException;
 
 /**
  *
@@ -12,8 +16,16 @@ package Vistas;
  */
 public class Led extends javax.swing.JFrame {
     
+    PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
+    
     public Led() {
         initComponents();
+        try {
+            Arduino.getPortsAvailable();
+            Arduino.arduinoTX("/dev/ttyACM0", 9600);
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -79,11 +91,23 @@ public class Led extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEncenderActionPerformed
-        
+        try {
+            Arduino.sendData("1");
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SerialPortException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BotonEncenderActionPerformed
 
     private void BotonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonApagarActionPerformed
-        
+        try {
+            Arduino.sendData("0");
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SerialPortException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BotonApagarActionPerformed
 
     /**
