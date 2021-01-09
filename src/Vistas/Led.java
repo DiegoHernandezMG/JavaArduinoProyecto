@@ -4,24 +4,26 @@
  * and open the template in the editor.
  */
 package Vistas;
-import comunicacionserial.ArduinoExcepcion;
-import comunicacionserial.*;
+import com.panamahitek.ArduinoException;
+import com.panamahitek.PanamaHitek_Arduino;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jssc.SerialPortException;
+
 
 /**
  *
  * @author diego
  */
 public class Led extends javax.swing.JFrame {
-
-    ComunicacionSerial_Arduino conexion = new ComunicacionSerial_Arduino();
+    
+    PanamaHitek_Arduino Arduino  = new PanamaHitek_Arduino();
+    
     public Led() {
         initComponents();
         try {
-            conexion.arduinoTX("COM4", 9600);
-        } 
-        catch (ArduinoExcepcion ex) {
+            Arduino.arduinoTX("COM3", 9600);
+        } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -90,20 +92,20 @@ public class Led extends javax.swing.JFrame {
 
     private void BotonEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEncenderActionPerformed
         try {
-            conexion.sendData("1");
-            System.out.println("Led encendido");
-        } 
-        catch (ArduinoExcepcion ex) {
+            Arduino.sendData("1");
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SerialPortException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BotonEncenderActionPerformed
 
     private void BotonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonApagarActionPerformed
         try {
-            conexion.sendData("0");
-            System.out.println("Led apagado");
-        } 
-        catch (ArduinoExcepcion ex) {
+            Arduino.sendData("0");
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SerialPortException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BotonApagarActionPerformed
