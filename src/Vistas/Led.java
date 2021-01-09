@@ -5,7 +5,7 @@
  */
 package Vistas;
 import comunicacionserial.ArduinoExcepcion;
-import comunicacionserial.ComunicacionSerial_Arduino;
+import comunicacionserial.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +19,7 @@ public class Led extends javax.swing.JFrame {
     public Led() {
         initComponents();
         try {
-            conexion.arduinoTX("COM5", 9600);
+            conexion.arduinoTX("COM4", 9600);
         } 
         catch (ArduinoExcepcion ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
@@ -37,6 +37,7 @@ public class Led extends javax.swing.JFrame {
 
         BotonEncender = new javax.swing.JButton();
         BotonApagar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,25 +57,32 @@ public class Led extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        jButton1.setText("ENCENDER/APAGAR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(BotonEncender, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(BotonApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(104, 104, 104)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BotonApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonEncender, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(80, 80, 80)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BotonEncender, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(175, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addComponent(BotonApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,6 +91,7 @@ public class Led extends javax.swing.JFrame {
     private void BotonEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEncenderActionPerformed
         try {
             conexion.sendData("1");
+            System.out.println("Led encendido");
         } 
         catch (ArduinoExcepcion ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
@@ -92,6 +101,7 @@ public class Led extends javax.swing.JFrame {
     private void BotonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonApagarActionPerformed
         try {
             conexion.sendData("0");
+            System.out.println("Led apagado");
         } 
         catch (ArduinoExcepcion ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
@@ -136,5 +146,6 @@ public class Led extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonApagar;
     private javax.swing.JButton BotonEncender;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
