@@ -17,12 +17,14 @@ import jssc.SerialPortException;
 public class Led extends javax.swing.JFrame {
     
     PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
+    String OutputR;
+    int R=0;
     
     public Led() {
         initComponents();
         try {
             Arduino.getPortsAvailable();
-            Arduino.arduinoTX("/dev/ttyUSB0", 9600);
+            Arduino.arduinoTX("/dev/ttyUSB1", 9600);
         } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -50,6 +52,7 @@ public class Led extends javax.swing.JFrame {
         jLabel_CI = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BotonEncender.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -92,8 +95,8 @@ public class Led extends javax.swing.JFrame {
         });
         getContentPane().add(jToggle_VI, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 299, 317, -1));
 
-        jSlider_IL.setMajorTickSpacing(50);
-        jSlider_IL.setMaximum(255);
+        jSlider_IL.setMajorTickSpacing(25);
+        jSlider_IL.setMaximum(250);
         jSlider_IL.setPaintLabels(true);
         jSlider_IL.setPaintTicks(true);
         jSlider_IL.setValue(0);
@@ -183,9 +186,20 @@ public class Led extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggle_VIActionPerformed
 
     private void jSlider_ILStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider_ILStateChanged
-        int valor = jSlider_IL.getValue();
-        String valor_t = Integer.toString(valor);
+        R = jSlider_IL.getValue();
+        String valor_t = Integer.toString(R);
+        
         jLabel_CI.setText(valor_t);
+        
+        OutputR = "c";
+
+        if (R < 10) {
+        OutputR = OutputR + "00" + R;
+        } else if (R < 100) {
+        OutputR = OutputR + "0" + R;
+        } else {
+        OutputR = OutputR + R;
+        }
         
         try {
             System.out.println(valor_t);
