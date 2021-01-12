@@ -16,6 +16,7 @@ public class MenuInicial extends javax.swing.JFrame {
      */
     public MenuInicial() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,21 +28,146 @@ public class MenuInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton_TSensor_IR = new javax.swing.JButton();
+        jButton_TSensor_Ultra = new javax.swing.JButton();
+        jButton_TLeds = new javax.swing.JButton();
+        jButton_TMotores = new javax.swing.JButton();
+        jButton_Comprar = new javax.swing.JButton();
+        jButton_Salir = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(getPreferredSize());
+
+        jLabel1.setFont(new java.awt.Font("URW Gothic L", 0, 36)); // NOI18N
+        jLabel1.setText("TESTEO COMPONENTES");
+
+        jLabel2.setFont(new java.awt.Font("URW Gothic L", 0, 36)); // NOI18N
+        jLabel2.setText("MOTORES");
+
+        jButton_TSensor_IR.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
+        jButton_TSensor_IR.setText("TESTEO SENSOR IR");
+        jButton_TSensor_IR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_TSensor_IRActionPerformed(evt);
+            }
+        });
+
+        jButton_TSensor_Ultra.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
+        jButton_TSensor_Ultra.setText("TESTEO SENSOR ULTRASONICO");
+        jButton_TSensor_Ultra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_TSensor_UltraActionPerformed(evt);
+            }
+        });
+
+        jButton_TLeds.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
+        jButton_TLeds.setText("TESTEO LEDS");
+        jButton_TLeds.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_TLedsActionPerformed(evt);
+            }
+        });
+
+        jButton_TMotores.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
+        jButton_TMotores.setText("TESTEO MOTORES");
+        jButton_TMotores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_TMotoresActionPerformed(evt);
+            }
+        });
+
+        jButton_Comprar.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
+        jButton_Comprar.setText("COMPRAR COMPONENTES");
+
+        jButton_Salir.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
+        jButton_Salir.setText("SALIR");
+        jButton_Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton_TSensor_IR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_TSensor_Ultra, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                            .addComponent(jButton_TMotores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_TLeds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_Comprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton_Salir)
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(158, 158, 158))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(40, 40, 40)
+                .addComponent(jButton_TSensor_IR, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jButton_TSensor_Ultra, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jButton_TMotores, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jButton_TLeds, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jButton_Comprar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(jButton_Salir)
+                .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton_TSensor_IRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_TSensor_IRActionPerformed
+        TestSensorIR SensorIR = new TestSensorIR();
+        SensorIR.show();
+        this.hide();
+    }//GEN-LAST:event_jButton_TSensor_IRActionPerformed
+
+    private void jButton_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton_SalirActionPerformed
+
+    private void jButton_TSensor_UltraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_TSensor_UltraActionPerformed
+        TestSensorUS SensorUltra = new TestSensorUS();
+        SensorUltra.show();
+        this.hide();
+    }//GEN-LAST:event_jButton_TSensor_UltraActionPerformed
+
+    private void jButton_TMotoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_TMotoresActionPerformed
+        Motores TestMot = new Motores();
+        TestMot.show();
+        this.hide();
+    }//GEN-LAST:event_jButton_TMotoresActionPerformed
+
+    private void jButton_TLedsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_TLedsActionPerformed
+        Led TestLed = new Led();
+        TestLed.show();
+        this.hide();
+    }//GEN-LAST:event_jButton_TLedsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +205,13 @@ public class MenuInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_Comprar;
+    private javax.swing.JButton jButton_Salir;
+    private javax.swing.JButton jButton_TLeds;
+    private javax.swing.JButton jButton_TMotores;
+    private javax.swing.JButton jButton_TSensor_IR;
+    private javax.swing.JButton jButton_TSensor_Ultra;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
