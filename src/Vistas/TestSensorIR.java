@@ -125,7 +125,6 @@ public class TestSensorIR extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Ventana ventana = new Ventana();
-            
             ventana.setVisible(true);
             
         } catch (WriterException ex) {
