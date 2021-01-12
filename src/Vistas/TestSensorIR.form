@@ -23,58 +23,69 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="java.awt.Panel" name="panel1">
+    <Container class="javax.swing.JPanel" name="jPanel1">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
-                  <Component id="label1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="231" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="button1" min="-2" pref="140" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="LabelLectura" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="BotonGenerarQR" max="32767" attributes="0"/>
+                          <Component id="BotonIniciar" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="203" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="label1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="227" max="32767" attributes="0"/>
-                  <Component id="button1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                  <Component id="BotonIniciar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="BotonGenerarQR" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="LabelLectura" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="122" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="java.awt.Label" name="label1">
+        <Component class="javax.swing.JButton" name="BotonIniciar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Test Sensor Infrarrojo"/>
-          </Properties>
-        </Component>
-        <Component class="java.awt.Button" name="button1">
-          <Properties>
-            <Property name="label" type="java.lang.String" value="Generar Codigo QR"/>
+            <Property name="text" type="java.lang.String" value="Iniciar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonIniciarActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="BotonGenerarQR">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Generar QR"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonGenerarQRActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="LabelLectura">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Lectura: "/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

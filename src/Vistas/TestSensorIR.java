@@ -6,27 +6,48 @@
 package Vistas;
 
 import com.google.zxing.WriterException;
-import java.awt.image.BufferedImage;
+import com.panamahitek.ArduinoException;
+import com.panamahitek.PanamaHitek_Arduino;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javaarduinoproyecto.*;
+import jssc.SerialPortEvent;
+import jssc.SerialPortEventListener;
+import jssc.SerialPortException;
 
 
 
 /**
  *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author David
  */
 public class TestSensorIR extends javax.swing.JFrame {
 
+        PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
+        SerialPortEventListener listen = new SerialPortEventListener() {
+            @Override
+            public void serialEvent(SerialPortEvent spe) {
+                try {
+                    if(Arduino.isMessageAvailable()){
+                        LabelLectura.setText(Arduino.printMessage());
+                    }
+                } catch (SerialPortException | ArduinoException ex) {
+                    Logger.getLogger(TestSensorIR.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        
     /**
      * Creates new form TestSensorIR
      */
     public TestSensorIR() {
         initComponents();
+        
+            try {
+                Arduino.arduinoRXTX("COM4", 9600, listen);
+            } catch (ArduinoException ex) {
+                Logger.getLogger(TestSensorIR.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }
 
     /**
@@ -38,78 +59,91 @@ public class TestSensorIR extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel1 = new java.awt.Panel();
-        label1 = new java.awt.Label();
-        button1 = new java.awt.Button();
+        jPanel1 = new javax.swing.JPanel();
+        BotonIniciar = new javax.swing.JButton();
+        BotonGenerarQR = new javax.swing.JButton();
+        LabelLectura = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        label1.setText("Test Sensor Infrarrojo");
-
-        button1.setLabel("Generar Codigo QR");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        BotonIniciar.setText("Iniciar");
+        BotonIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                BotonIniciarActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(231, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+        BotonGenerarQR.setText("Generar QR");
+        BotonGenerarQR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonGenerarQRActionPerformed(evt);
+            }
+        });
+
+        LabelLectura.setText("Lectura: ");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(181, 181, 181)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LabelLectura)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(BotonGenerarQR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotonIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(BotonIniciar)
+                .addGap(18, 18, 18)
+                .addComponent(BotonGenerarQR)
+                .addGap(18, 18, 18)
+                .addComponent(LabelLectura)
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void BotonGenerarQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGenerarQRActionPerformed
+        // TODO add your handling code here:
         try {
-            // TODO add your handling code here:
+            Ventana ventana = new Ventana();
             
-            GeneraQR generaQR = new GeneraQR();
-            BufferedImage imagen = generaQR.crearQR("https://www.upiita.ipn.mx/", 400, 400);
-            ImageIcon icono = new ImageIcon(imagen);
-            JLabel etiqueta = new JLabel("");
+            ventana.setVisible(true);
             
-            etiqueta.setIcon(icono);
-            
-            this.setIconImage(imagen);
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.setTitle("Ejemplo de codigo QR");
-            this.getContentPane().add(etiqueta);        
-            this.pack();
         } catch (WriterException ex) {
             Logger.getLogger(TestSensorIR.class.getName()).log(Level.SEVERE, null, ex);
+        
+    }
+    }//GEN-LAST:event_BotonGenerarQRActionPerformed
+
+    private void BotonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarActionPerformed
+        // TODO add your handling code here:
+        try {
+            Arduino.sendData("2");
+            System.out.println("Mensaje envia a Arduino");
+        } catch (ArduinoException | SerialPortException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_button1ActionPerformed
+        
+    }//GEN-LAST:event_BotonIniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,6 +174,7 @@ public class TestSensorIR extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new TestSensorIR().setVisible(true);
             }
@@ -147,8 +182,9 @@ public class TestSensorIR extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
-    private java.awt.Label label1;
-    private java.awt.Panel panel1;
+    private javax.swing.JButton BotonGenerarQR;
+    private javax.swing.JButton BotonIniciar;
+    private javax.swing.JLabel LabelLectura;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
