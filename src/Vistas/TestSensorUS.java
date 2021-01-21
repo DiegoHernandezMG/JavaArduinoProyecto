@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Vistas;
-
+import javaarduinoproyecto.Sensor;
 import com.google.zxing.WriterException;
 import com.panamahitek.ArduinoException;
 import com.panamahitek.PanamaHitek_Arduino;
@@ -20,7 +20,8 @@ import jssc.SerialPortException;
  */
 public class TestSensorUS extends javax.swing.JFrame {
 
-         PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
+        
+        PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
         SerialPortEventListener listen = new SerialPortEventListener() {
             @Override
             public void serialEvent(SerialPortEvent spe) {
@@ -39,7 +40,7 @@ public class TestSensorUS extends javax.swing.JFrame {
      */
     public TestSensorUS() {
         initComponents();
-        
+        tablaDatos();
             try {
                 Arduino.arduinoRXTX("COM4", 9600, listen);
             } catch (ArduinoException ex) {
@@ -61,8 +62,14 @@ public class TestSensorUS extends javax.swing.JFrame {
         BotonoInciar = new javax.swing.JButton();
         BotonGenerarQR = new javax.swing.JButton();
         LabelDistancia = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaDatos = new javax.swing.JTable();
+        BotonDiagrama = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(530, 730));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BotonoInciar.setText("Iniciar");
         BotonoInciar.addActionListener(new java.awt.event.ActionListener() {
@@ -78,42 +85,69 @@ public class TestSensorUS extends javax.swing.JFrame {
             }
         });
 
+        LabelDistancia.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         LabelDistancia.setText("Distancia: ");
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Test Sensor Ultrasonico");
+
+        TablaDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null}
+            },
+            new String [] {
+                "Tipo de Sensor", "Frecuencia", "Distancia min-Max", "Alimentacion"
+            }
+        ));
+        TablaDatos.setRowHeight(50);
+        jScrollPane1.setViewportView(TablaDatos);
+
+        BotonDiagrama.setText("Diagrama");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelDistancia)
-                    .addComponent(BotonGenerarQR)
-                    .addComponent(BotonoInciar))
-                .addContainerGap(240, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(LabelDistancia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotonGenerarQR, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                            .addComponent(BotonoInciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotonDiagrama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(46, 46, 46)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 27, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(BotonoInciar)
-                .addGap(18, 18, 18)
-                .addComponent(BotonGenerarQR)
-                .addGap(18, 18, 18)
-                .addComponent(LabelDistancia)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(BotonoInciar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BotonGenerarQR)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BotonDiagrama)))
+                .addGap(50, 50, 50)
+                .addComponent(LabelDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -175,11 +209,35 @@ public class TestSensorUS extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void tablaDatos(){
+        Sensor UltraS = new Sensor("linkqr","Diagrama","datasheet",5,"Ultrasonico",40,400);
+        String matris [][] = new String [1][4];
+
+                matris[0][0]=UltraS.getTipo();
+                matris[0][2]=Integer.toString(UltraS.getFrecuencia()); 
+                matris[0][1]=Integer.toString(UltraS.getDist());
+                matris[0][3]=Integer.toString(UltraS.getAlimentacion());
+            
+          TablaDatos.setModel(new javax.swing.table.DefaultTableModel(
+            matris,
+            new String [] {
+                "Tipo de Sensor", "Frecuencia", "Distancia Max", "Alimentacion"
+            }
+        ));
+        
+    }
+        
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonDiagrama;
     private javax.swing.JButton BotonGenerarQR;
     private javax.swing.JButton BotonoInciar;
     private javax.swing.JLabel LabelDistancia;
+    private javax.swing.JTable TablaDatos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
