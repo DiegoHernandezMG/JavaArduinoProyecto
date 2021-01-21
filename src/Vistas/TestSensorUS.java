@@ -20,7 +20,10 @@ import jssc.SerialPortException;
  */
 public class TestSensorUS extends javax.swing.JFrame {
 
-        
+    
+         Sensor UltraS = new Sensor("https://www.steren.com.mx/sensor-ultrasonico.html?gclid=CjwKCAiA6aSABhApEiwA6Cbm_"
+                 + "30gNUG354HXUMDhDSVj78aAWysiy7idV5q6Jn0RXsiII7l6Tfhs4xoCcxIQAvD_BwE",
+                 "/Imágenes/Conexion sensor US.png","datasheet",5,"Ultrasonico",40,400);
         PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
         SerialPortEventListener listen = new SerialPortEventListener() {
             @Override
@@ -40,6 +43,7 @@ public class TestSensorUS extends javax.swing.JFrame {
      */
     public TestSensorUS() {
         initComponents();
+
         tablaDatos();
             try {
                 Arduino.arduinoRXTX("COM4", 9600, listen);
@@ -104,6 +108,11 @@ public class TestSensorUS extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TablaDatos);
 
         BotonDiagrama.setText("Diagrama");
+        BotonDiagrama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonDiagramaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,7 +132,7 @@ public class TestSensorUS extends javax.swing.JFrame {
                             .addComponent(BotonDiagrama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(46, 46, 46)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 27, Short.MAX_VALUE)))
+                        .addGap(0, 32, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -144,10 +153,10 @@ public class TestSensorUS extends javax.swing.JFrame {
                         .addComponent(BotonDiagrama)))
                 .addGap(50, 50, 50)
                 .addComponent(LabelDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -155,7 +164,7 @@ public class TestSensorUS extends javax.swing.JFrame {
     private void BotonGenerarQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGenerarQRActionPerformed
         // TODO add your handling code here:
          try {
-            Ventana ventana = new Ventana();
+            Ventana ventana = new Ventana(UltraS.linkQR);
             
             ventana.setVisible(true);
             
@@ -174,6 +183,13 @@ public class TestSensorUS extends javax.swing.JFrame {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BotonoInciarActionPerformed
+
+    private void BotonDiagramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDiagramaActionPerformed
+        // TODO add your handling code here:
+        Diagrama conexion = new Diagrama(UltraS.diagrama);
+        conexion.setVisible(true);
+        
+    }//GEN-LAST:event_BotonDiagramaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,7 +227,7 @@ public class TestSensorUS extends javax.swing.JFrame {
     }
     
     public void tablaDatos(){
-        Sensor UltraS = new Sensor("linkqr","Diagrama","datasheet",5,"Ultrasonico",40,400);
+
         String matris [][] = new String [1][4];
 
                 matris[0][0]=UltraS.getTipo();
@@ -222,7 +238,7 @@ public class TestSensorUS extends javax.swing.JFrame {
           TablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             matris,
             new String [] {
-                "Tipo de Sensor", "Frecuencia", "Distancia Max", "Alimentacion"
+                "Tipo de Sensor", "Frecuencia (KHz)", "Distancia Max (cm)", "Alimentacion (V)"
             }
         ));
         
