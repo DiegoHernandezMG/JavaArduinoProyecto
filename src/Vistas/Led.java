@@ -17,18 +17,35 @@ import jssc.SerialPortException;
 public class Led extends javax.swing.JFrame {
     
     PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
-    String OutputR;
-    int R=0;
+    String OutputR, OutputL;
+    int R=0, L=0;
     
     public Led() {
         initComponents();
         this.setLocationRelativeTo(null);
         try {
             Arduino.getPortsAvailable();
-            Arduino.arduinoTX("/dev/ttyUSB1", 9600);
+            Arduino.arduinoTX("/dev/ttyUSB0", 9600);
         } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        jSlider_IL.setEnabled(false);
+        jLabel_MI.setEnabled(false);
+        jLabel2.setEnabled(false);
+        jLabel_CI.setEnabled(false);
+        jLabel3.setEnabled(false);
+        jLabel4.setEnabled(false);
+        jSlider_DL.setEnabled(false);
+        jLabel5.setEnabled(false);
+        jLabel_CD.setEnabled(false);
+        
+        BotonEncender.setEnabled(false);
+        BotonApagar.setEnabled(false);
+        BotonEncDer.setEnabled(false);
+        BotonApagDer.setEnabled(false);
+        BotonEncIzq.setEnabled(false);
+        BotonApagIzq.setEnabled(false);
     }
 
     /**
@@ -104,6 +121,11 @@ public class Led extends javax.swing.JFrame {
 
         jToggle_VI.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
         jToggle_VI.setText("VARIAR INTENSIDAD ");
+        jToggle_VI.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jToggle_VIStateChanged(evt);
+            }
+        });
         jToggle_VI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggle_VIActionPerformed(evt);
@@ -148,18 +170,38 @@ public class Led extends javax.swing.JFrame {
 
         BotonEncDer.setFont(new java.awt.Font("URW Gothic L", 0, 16)); // NOI18N
         BotonEncDer.setText("Encender derecho");
+        BotonEncDer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonEncDerActionPerformed(evt);
+            }
+        });
         getContentPane().add(BotonEncDer, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, 190, 60));
 
         BotonApagDer.setFont(new java.awt.Font("URW Gothic L", 0, 16)); // NOI18N
         BotonApagDer.setText("Apagar derecha");
+        BotonApagDer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonApagDerActionPerformed(evt);
+            }
+        });
         getContentPane().add(BotonApagDer, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 190, 60));
 
         BotonEncIzq.setFont(new java.awt.Font("URW Gothic L", 0, 16)); // NOI18N
         BotonEncIzq.setText("Encender izquierdo");
+        BotonEncIzq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonEncIzqActionPerformed(evt);
+            }
+        });
         getContentPane().add(BotonEncIzq, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 180, 60));
 
         BotonApagIzq.setFont(new java.awt.Font("URW Gothic L", 0, 16)); // NOI18N
         BotonApagIzq.setText("Apagar izquierdo");
+        BotonApagIzq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonApagIzqActionPerformed(evt);
+            }
+        });
         getContentPane().add(BotonApagIzq, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 180, 60));
 
         jSlider_DL.setMajorTickSpacing(25);
@@ -200,7 +242,7 @@ public class Led extends javax.swing.JFrame {
 
     private void BotonEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEncenderActionPerformed
         try {
-            Arduino.sendData("1");
+            Arduino.sendData("e");
         } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SerialPortException ex) {
@@ -210,7 +252,7 @@ public class Led extends javax.swing.JFrame {
 
     private void BotonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonApagarActionPerformed
         try {
-            Arduino.sendData("0");
+            Arduino.sendData("a");
         } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SerialPortException ex) {
@@ -220,7 +262,6 @@ public class Led extends javax.swing.JFrame {
 
     private void jToggle_EAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggle_EAActionPerformed
         if(jToggle_EA.isSelected()){
-            jToggle_VI.setEnabled(false);
             jSlider_IL.setEnabled(false);
             jLabel_MI.setEnabled(false);
             jLabel2.setEnabled(false);
@@ -230,8 +271,57 @@ public class Led extends javax.swing.JFrame {
             jSlider_DL.setEnabled(false);
             jLabel5.setEnabled(false);
             jLabel_CD.setEnabled(false);
+            
+            jToggle_EA.setEnabled(true);
+            BotonEncender.setEnabled(true);
+            BotonApagar.setEnabled(true);
+            BotonEncDer.setEnabled(true);
+            BotonApagDer.setEnabled(true);
+            BotonEncIzq.setEnabled(true);
+            BotonApagIzq.setEnabled(true);
         }
         else{
+            /*jToggle_VI.setEnabled(true);
+            jSlider_IL.setEnabled(true);
+            jLabel_MI.setEnabled(true);
+            jLabel2.setEnabled(true);
+            jLabel_CI.setEnabled(true);
+            jLabel3.setEnabled(true);
+            jLabel4.setEnabled(true);
+            jSlider_DL.setEnabled(true);
+            jLabel5.setEnabled(true);
+            jLabel_CD.setEnabled(true);*/
+            
+            BotonEncender.setEnabled(false);
+            BotonApagar.setEnabled(false);
+            BotonEncDer.setEnabled(false);
+            BotonApagDer.setEnabled(false);
+            BotonEncIzq.setEnabled(false);
+            BotonApagIzq.setEnabled(false);
+        }
+    }//GEN-LAST:event_jToggle_EAActionPerformed
+
+    private void jButton_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SalirActionPerformed
+        try {
+            Arduino.sendData("a");
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SerialPortException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        System.exit(0);
+    }//GEN-LAST:event_jButton_SalirActionPerformed
+
+    private void jToggle_VIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggle_VIActionPerformed
+        if(jToggle_VI.isSelected()){
+            BotonEncender.setEnabled(false);
+            BotonApagar.setEnabled(false);
+            BotonEncDer.setEnabled(false);
+            BotonApagDer.setEnabled(false);
+            BotonEncIzq.setEnabled(false);
+            BotonApagIzq.setEnabled(false);
+            
             jToggle_VI.setEnabled(true);
             jSlider_IL.setEnabled(true);
             jLabel_MI.setEnabled(true);
@@ -243,52 +333,44 @@ public class Led extends javax.swing.JFrame {
             jLabel5.setEnabled(true);
             jLabel_CD.setEnabled(true);
         }
-    }//GEN-LAST:event_jToggle_EAActionPerformed
-
-    private void jButton_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SalirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jButton_SalirActionPerformed
-
-    private void jToggle_VIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggle_VIActionPerformed
-        if(jToggle_VI.isSelected()){
-            jToggle_EA.setEnabled(false);
-            BotonEncender.setEnabled(false);
-            BotonApagar.setEnabled(false);
-            BotonEncDer.setEnabled(false);
-            BotonApagDer.setEnabled(false);
-            BotonEncIzq.setEnabled(false);
-            BotonApagIzq.setEnabled(false);
-        }
         else{
-            jToggle_EA.setEnabled(true);
+            /*jToggle_EA.setEnabled(true);
             BotonEncender.setEnabled(true);
             BotonApagar.setEnabled(true);
             BotonEncDer.setEnabled(true);
             BotonApagDer.setEnabled(true);
             BotonEncIzq.setEnabled(true);
-            BotonApagIzq.setEnabled(true);
+            BotonApagIzq.setEnabled(true);*/
+            
+            jSlider_IL.setEnabled(false);
+            jLabel_MI.setEnabled(false);
+            jLabel2.setEnabled(false);
+            jLabel_CI.setEnabled(false);
+            jLabel3.setEnabled(false);
+            jLabel4.setEnabled(false);
+            jSlider_DL.setEnabled(false);
+            jLabel5.setEnabled(false);
+            jLabel_CD.setEnabled(false);
         }
     }//GEN-LAST:event_jToggle_VIActionPerformed
 
     private void jSlider_ILStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider_ILStateChanged
-        R = jSlider_IL.getValue();
-        String valor_t = Integer.toString(R);
+        L = jSlider_IL.getValue();
+        String valor_tL = Integer.toString(L);
         
-        jLabel_CI.setText(valor_t);
+        jLabel_CI.setText(valor_tL);
         
-        /*OutputR = "c";
-
-        if (R < 10) {
-        OutputR = OutputR + "00" + R;
-        } else if (R < 100) {
-        OutputR = OutputR + "0" + R;
+        if (L < 10) {
+        OutputL = "L" + "00" + L;
+        } else if (L < 100) {
+        OutputL = "L" + "0" + L;
         } else {
-        OutputR = OutputR + R;
-        }*/
+        OutputL = "L" + L;
+        }
         
         try {
-            System.out.println(valor_t);
-            Arduino.sendData(valor_t);
+            System.out.println(OutputL);
+            Arduino.sendData(OutputL);
         } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SerialPortException ex) {
@@ -298,29 +380,71 @@ public class Led extends javax.swing.JFrame {
 
     private void jSlider_DLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider_DLStateChanged
         R = jSlider_DL.getValue();
-        String valor_t = Integer.toString(R);
+        String valor_tD = Integer.toString(R);
         
-        jLabel_CD.setText(valor_t);
+        jLabel_CD.setText(valor_tD);
         
-        /*OutputR = "c";
-
         if (R < 10) {
-        OutputR = OutputR + "00" + R;
+        OutputR = "R" + "00" + R;
         } else if (R < 100) {
-        OutputR = OutputR + "0" + R;
+        OutputR = "R" + "0" + R;
         } else {
-        OutputR = OutputR + R;
-        }*/
+        OutputR = "R" + R;
+        }
         
         try {
-            System.out.println(valor_t);
-            Arduino.sendData(valor_t);
+            System.out.println(OutputR);
+            Arduino.sendData(OutputR);
         } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SerialPortException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jSlider_DLStateChanged
+
+    private void jToggle_VIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jToggle_VIStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggle_VIStateChanged
+
+    private void BotonEncDerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEncDerActionPerformed
+        try {
+            Arduino.sendData("D");
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SerialPortException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BotonEncDerActionPerformed
+
+    private void BotonApagDerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonApagDerActionPerformed
+        try {
+            Arduino.sendData("d");
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SerialPortException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BotonApagDerActionPerformed
+
+    private void BotonEncIzqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEncIzqActionPerformed
+        try {
+            Arduino.sendData("I");
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SerialPortException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BotonEncIzqActionPerformed
+
+    private void BotonApagIzqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonApagIzqActionPerformed
+        try {
+            Arduino.sendData("i");
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SerialPortException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BotonApagIzqActionPerformed
 
     /**
      * @param args the command line arguments

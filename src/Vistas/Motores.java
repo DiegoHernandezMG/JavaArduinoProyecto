@@ -29,6 +29,29 @@ public class Motores extends javax.swing.JFrame {
         } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        jLabel5.setEnabled(false);
+        jLabel_PWM_JUNT.setEnabled(false);
+        jSlider_PWM_JUNT.setEnabled(false);
+        jLabel6.setEnabled(false);
+        jLabel8.setEnabled(false);
+        jToggle_INV_JUNT.setEnabled(false);
+        jSlider_PWM_JUNT.setValue(0);
+        
+        jLabel3.setEnabled(false);
+        jLabel_PWM_IZQ.setEnabled(false);
+        jSlider_PWM_IZQ.setEnabled(false);
+        jLabel9.setEnabled(false);
+        jLabel10.setEnabled(false);
+        jToggle_INV_IZQ.setEnabled(false);
+        jLabel4.setEnabled(false);
+        jLabel_PWM_DER.setEnabled(false);
+        jSlider_PWM_DER.setEnabled(false);
+        jLabel2.setEnabled(false);
+        jLabel7.setEnabled(false);
+        jToggle_INV_DER.setEnabled(false);
+        jSlider_PWM_IZQ.setValue(0);
+        jSlider_PWM_DER.setValue(0);
     }
 
     /**
@@ -200,7 +223,6 @@ public class Motores extends javax.swing.JFrame {
 
     private void jToggle_MOT_INDIVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggle_MOT_INDIVActionPerformed
         if(jToggle_MOT_INDIV.isSelected()){
-            jToggle_MOT_JUNT.setEnabled(false);
             jLabel5.setEnabled(false);
             jLabel_PWM_JUNT.setEnabled(false);
             jSlider_PWM_JUNT.setEnabled(false);
@@ -208,21 +230,46 @@ public class Motores extends javax.swing.JFrame {
             jLabel8.setEnabled(false);
             jToggle_INV_JUNT.setEnabled(false);
             jSlider_PWM_JUNT.setValue(0);
+            
+            jLabel3.setEnabled(true);
+            jLabel_PWM_IZQ.setEnabled(true);
+            jSlider_PWM_IZQ.setEnabled(true);
+            jLabel9.setEnabled(true);
+            jLabel10.setEnabled(true);
+            jToggle_INV_IZQ.setEnabled(true);
+            jLabel4.setEnabled(true);
+            jLabel_PWM_DER.setEnabled(true);
+            jSlider_PWM_DER.setEnabled(true);
+            jLabel2.setEnabled(true);
+            jLabel7.setEnabled(true);
+            jToggle_INV_DER.setEnabled(true);
         }
         else{
-            jToggle_MOT_JUNT.setEnabled(true);
+            /*jToggle_MOT_JUNT.setEnabled(true);
             jLabel5.setEnabled(true);
             jLabel_PWM_JUNT.setEnabled(true);
             jSlider_PWM_JUNT.setEnabled(true);
             jLabel6.setEnabled(true);
             jLabel8.setEnabled(true);
-            jToggle_INV_JUNT.setEnabled(true);
+            jToggle_INV_JUNT.setEnabled(true);*/
+            
+            jLabel3.setEnabled(false);
+            jLabel_PWM_IZQ.setEnabled(false);
+            jSlider_PWM_IZQ.setEnabled(false);
+            jLabel9.setEnabled(false);
+            jLabel10.setEnabled(false);
+            jToggle_INV_IZQ.setEnabled(false);
+            jLabel4.setEnabled(false);
+            jLabel_PWM_DER.setEnabled(false);
+            jSlider_PWM_DER.setEnabled(false);
+            jLabel2.setEnabled(false);
+            jLabel7.setEnabled(false);
+            jToggle_INV_DER.setEnabled(false);
         }
     }//GEN-LAST:event_jToggle_MOT_INDIVActionPerformed
 
     private void jToggle_MOT_JUNTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggle_MOT_JUNTActionPerformed
         if(jToggle_MOT_JUNT.isSelected()){
-            jToggle_MOT_INDIV.setEnabled(false);
             jLabel3.setEnabled(false);
             jLabel_PWM_IZQ.setEnabled(false);
             jSlider_PWM_IZQ.setEnabled(false);
@@ -237,9 +284,16 @@ public class Motores extends javax.swing.JFrame {
             jToggle_INV_DER.setEnabled(false);
             jSlider_PWM_IZQ.setValue(0);
             jSlider_PWM_DER.setValue(0);
+            
+            jLabel5.setEnabled(true);
+            jLabel_PWM_JUNT.setEnabled(true);
+            jSlider_PWM_JUNT.setEnabled(true);
+            jLabel6.setEnabled(true);
+            jLabel8.setEnabled(true);
+            jToggle_INV_JUNT.setEnabled(true);
         }
         else{
-            jToggle_MOT_INDIV.setEnabled(true);
+            /*jToggle_MOT_INDIV.setEnabled(true);
             jLabel3.setEnabled(true);
             jLabel_PWM_IZQ.setEnabled(true);
             jSlider_PWM_IZQ.setEnabled(true);
@@ -251,7 +305,15 @@ public class Motores extends javax.swing.JFrame {
             jSlider_PWM_DER.setEnabled(true);
             jLabel2.setEnabled(true);
             jLabel7.setEnabled(true);
-            jToggle_INV_DER.setEnabled(true);
+            jToggle_INV_DER.setEnabled(true);*/
+            
+            jLabel5.setEnabled(false);
+            jLabel_PWM_JUNT.setEnabled(false);
+            jSlider_PWM_JUNT.setEnabled(false);
+            jLabel6.setEnabled(false);
+            jLabel8.setEnabled(false);
+            jToggle_INV_JUNT.setEnabled(false);
+            jSlider_PWM_JUNT.setValue(0);
         }
     }//GEN-LAST:event_jToggle_MOT_JUNTActionPerformed
 
