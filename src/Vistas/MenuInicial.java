@@ -80,6 +80,11 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jButton_Comprar.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
         jButton_Comprar.setText("COMPRAR COMPONENTES");
+        jButton_Comprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ComprarActionPerformed(evt);
+            }
+        });
 
         jButton_Salir.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
         jButton_Salir.setText("SALIR");
@@ -168,6 +173,12 @@ public class MenuInicial extends javax.swing.JFrame {
         TestLed.show();
         this.hide();
     }//GEN-LAST:event_jButton_TLedsActionPerformed
+
+    private void jButton_ComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ComprarActionPerformed
+        inicioSesion InicioSesion = new inicioSesion();
+        InicioSesion.show();
+        this.hide();
+    }//GEN-LAST:event_jButton_ComprarActionPerformed
 
     /**
      * @param args the command line arguments

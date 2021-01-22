@@ -25,6 +25,7 @@ public class CompraComponentes extends javax.swing.JFrame {
      */
     public CompraComponentes() {
         initComponents();
+        this.setLocationRelativeTo(null);
         mostrarComponentes("Todos");
     }
     

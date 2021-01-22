@@ -25,7 +25,7 @@ public class Led extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         try {
             Arduino.getPortsAvailable();
-            Arduino.arduinoTX("/dev/ttyUSB0", 9600);
+            Arduino.arduinoTX("/dev/ttyUSB1", 9600);
         } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -147,6 +147,11 @@ public class Led extends javax.swing.JFrame {
 
         jButton_Regresar.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         jButton_Regresar.setText("REGRESAR");
+        jButton_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RegresarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton_Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 690, -1, -1));
 
         jButton_Salir.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
@@ -445,6 +450,26 @@ public class Led extends javax.swing.JFrame {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BotonApagIzqActionPerformed
+
+    private void jButton_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegresarActionPerformed
+        try {
+            Arduino.sendData("a");
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SerialPortException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            Arduino.killArduinoConnection();
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        MenuInicial Menu = new MenuInicial();
+        Menu.show();
+        this.hide();
+    }//GEN-LAST:event_jButton_RegresarActionPerformed
 
     /**
      * @param args the command line arguments

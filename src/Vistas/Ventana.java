@@ -24,6 +24,7 @@ public class Ventana extends javax.swing.JFrame {
      */
     public Ventana(String linkqr) throws WriterException {
    //      initComponents();
+        this.setLocationRelativeTo(null);
         GeneraQR generaQR = new GeneraQR();
         BufferedImage imagen = generaQR.crearQR(linkqr, 400, 400);
         ImageIcon icono = new ImageIcon(imagen);

@@ -17,7 +17,7 @@ public class Diagrama extends javax.swing.JFrame {
      */
     public Diagrama(String Direccion) {
         initComponents();
-        
+        this.setLocationRelativeTo(null);
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(Direccion))); // NOI18N
         getContentPane().add(jLabel1, java.awt.BorderLayout.CENTER);

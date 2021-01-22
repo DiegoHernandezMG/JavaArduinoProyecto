@@ -73,7 +73,7 @@ public class CarritoCompraDAO {
                 int h = fecha.getHours();
                 int m = fecha.getMinutes();
                 int s = fecha.getSeconds();
-                String ruta = System.getProperty("user.home") + "/Desktop/Ticket" + "-"+ h + "-" + m + "-" + s +".pdf";
+                String ruta = System.getProperty("user.home") + "/Escritorio/Ticket" + "-"+ h + "-" + m + "-" + s +".pdf";
                 String SQL = "select * from carrito where usuarioID = '" + idUser + "'";
                 PdfWriter.getInstance(documento, new FileOutputStream(ruta));
                 documento.open();

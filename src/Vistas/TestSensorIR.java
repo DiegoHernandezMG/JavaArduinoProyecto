@@ -44,6 +44,7 @@ public class TestSensorIR extends javax.swing.JFrame {
      */
     public TestSensorIR() {
         initComponents();
+        this.setLocationRelativeTo(null);
         tablaDatos();
             try {
                 Arduino.arduinoRXTX("COM4", 9600, listen);
