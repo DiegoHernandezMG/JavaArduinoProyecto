@@ -45,11 +45,12 @@ public class TestSensorUS extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         tablaDatos();
-            try {
-                Arduino.arduinoRXTX("COM4", 9600, listen);
-            } catch (ArduinoException ex) {
-                Logger.getLogger(TestSensorIR.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        
+        try {
+            Arduino.arduinoRXTX("/dev/ttyUSB0", 9600, listen);
+        } catch (ArduinoException ex) {
+            Logger.getLogger(TestSensorIR.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 
@@ -178,7 +179,7 @@ public class TestSensorUS extends javax.swing.JFrame {
     private void BotonoInciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonoInciarActionPerformed
         // TODO add your handling code here:
         try {
-            Arduino.sendData("2");
+            Arduino.sendData("1");
             System.out.println("Mensaje envia a Arduino");
         } catch (ArduinoException | SerialPortException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);

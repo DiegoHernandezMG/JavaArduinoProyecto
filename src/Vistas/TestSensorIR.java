@@ -47,7 +47,7 @@ public class TestSensorIR extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         tablaDatos();
             try {
-                Arduino.arduinoRXTX("COM4", 9600, listen);
+                Arduino.arduinoRXTX("/dev/ttyUSB0", 9600, listen);
             } catch (ArduinoException ex) {
                 Logger.getLogger(TestSensorIR.class.getName()).log(Level.SEVERE, null, ex);
             }
