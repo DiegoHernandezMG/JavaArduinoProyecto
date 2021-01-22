@@ -42,7 +42,7 @@ public class Diagrama extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/Conexion sensor IR.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/Conexion sensor US.png"))); // NOI18N
         getContentPane().add(jLabel1, java.awt.BorderLayout.CENTER);
 
         pack();

@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package Vistas;
+import com.google.zxing.WriterException;
 import com.panamahitek.ArduinoException;
 import com.panamahitek.PanamaHitek_Arduino;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javaarduinoproyecto.Componente;
 import jssc.SerialPortException;
 
 /**
@@ -16,6 +18,7 @@ import jssc.SerialPortException;
  */
 public class Led extends javax.swing.JFrame {
     
+    Componente Led = new Componente("https://www.steren.com.mx/led-de-5-mm-color-rojo-claro.html","/Imágenes/Conexion Leds.jpeg","datasheet",5);
     PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
     String OutputR, OutputL;
     int R=0, L=0;
@@ -79,6 +82,8 @@ public class Led extends javax.swing.JFrame {
         jLabel_CD = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        BotonDiagrama = new javax.swing.JButton();
+        BotonQR = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
@@ -241,6 +246,22 @@ public class Led extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/Midnight.png"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        BotonDiagrama.setText("Diagrama");
+        BotonDiagrama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonDiagramaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotonDiagrama, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 680, 90, 50));
+
+        BotonQR.setText("Generar QR");
+        BotonQR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonQRActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotonQR, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 682, -1, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -471,6 +492,25 @@ public class Led extends javax.swing.JFrame {
         this.hide();
     }//GEN-LAST:event_jButton_RegresarActionPerformed
 
+    private void BotonDiagramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDiagramaActionPerformed
+        // TODO add your handling code here:
+        Diagrama conexion = new Diagrama(Led.diagrama);
+        conexion.setVisible(true);
+    }//GEN-LAST:event_BotonDiagramaActionPerformed
+
+    private void BotonQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonQRActionPerformed
+        // TODO add your handling code here:
+        try {
+            Ventana ventana = new Ventana(Led.linkQR);
+            
+            ventana.setVisible(true);
+            
+        } catch (WriterException ex) {
+            Logger.getLogger(TestSensorIR.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }
+    }//GEN-LAST:event_BotonQRActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -510,9 +550,11 @@ public class Led extends javax.swing.JFrame {
     private javax.swing.JButton BotonApagDer;
     private javax.swing.JButton BotonApagIzq;
     private javax.swing.JButton BotonApagar;
+    private javax.swing.JButton BotonDiagrama;
     private javax.swing.JButton BotonEncDer;
     private javax.swing.JButton BotonEncIzq;
     private javax.swing.JButton BotonEncender;
+    private javax.swing.JButton BotonQR;
     private javax.swing.JButton jButton_Regresar;
     private javax.swing.JButton jButton_Salir;
     private javax.swing.JLabel jLabel1;
