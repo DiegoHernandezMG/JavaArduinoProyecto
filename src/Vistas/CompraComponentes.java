@@ -47,7 +47,6 @@ public class CompraComponentes extends javax.swing.JFrame {
         tableComponentes = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnMi = new javax.swing.JButton();
-        btnCompras = new javax.swing.JButton();
         btnCarrito = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,13 +96,6 @@ public class CompraComponentes extends javax.swing.JFrame {
             }
         });
 
-        btnCompras.setText("Mis Compras");
-        btnCompras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnComprasActionPerformed(evt);
-            }
-        });
-
         btnCarrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/carrito.png"))); // NOI18N
         btnCarrito.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCarrito.addActionListener(new java.awt.event.ActionListener() {
@@ -130,8 +122,6 @@ public class CompraComponentes extends javax.swing.JFrame {
                         .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnMi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCompras)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAgregar)))
                 .addContainerGap())
@@ -151,8 +141,7 @@ public class CompraComponentes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
-                    .addComponent(btnMi)
-                    .addComponent(btnCompras))
+                    .addComponent(btnMi))
                 .addGap(17, 17, 17))
         );
 
@@ -221,11 +210,6 @@ public class CompraComponentes extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnMiActionPerformed
 
-    private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnComprasActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -267,7 +251,6 @@ public class CompraComponentes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCarrito;
-    private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnMi;
     private javax.swing.JComboBox<String> categoria;
