@@ -10,6 +10,7 @@ import com.panamahitek.ArduinoException;
 import com.panamahitek.PanamaHitek_Arduino;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javaarduinoproyecto.Sensor;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
@@ -22,6 +23,8 @@ import jssc.SerialPortException;
  */
 public class TestSensorIR extends javax.swing.JFrame {
 
+        Sensor InfraR = new Sensor("https://www.geekfactory.mx/tienda/sensores/cny70-sensor-optico-de-reflexion/"
+                ,"/Imágenes/Conexion sensor IR.png","datasheet",5,"Infrarrojo",950,5);
         PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
         SerialPortEventListener listen = new SerialPortEventListener() {
             @Override
@@ -41,7 +44,7 @@ public class TestSensorIR extends javax.swing.JFrame {
      */
     public TestSensorIR() {
         initComponents();
-        
+        tablaDatos();
             try {
                 Arduino.arduinoRXTX("COM4", 9600, listen);
             } catch (ArduinoException ex) {
@@ -63,6 +66,10 @@ public class TestSensorIR extends javax.swing.JFrame {
         BotonIniciar = new javax.swing.JButton();
         BotonGenerarQR = new javax.swing.JButton();
         LabelLectura = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        BotonDiagrama = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaDatos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,31 +87,76 @@ public class TestSensorIR extends javax.swing.JFrame {
             }
         });
 
+        LabelLectura.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         LabelLectura.setText("Lectura: ");
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Test Sensor Infrarrojo");
+
+        BotonDiagrama.setText("Diagrama");
+        BotonDiagrama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonDiagramaActionPerformed(evt);
+            }
+        });
+
+        TablaDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null}
+            },
+            new String [] {
+                "Tipo", "Longitud de Onda", "Distancia Max", "Alimentacion"
+            }
+        ));
+        TablaDatos.setRowHeight(50);
+        jScrollPane1.setViewportView(TablaDatos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(181, 181, 181)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelLectura)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(BotonGenerarQR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotonIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(203, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(BotonGenerarQR)
+                                    .addComponent(BotonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LabelLectura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BotonDiagrama, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addComponent(BotonIniciar)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BotonGenerarQR)
-                .addGap(18, 18, 18)
-                .addComponent(LabelLectura)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonDiagrama)
+                .addGap(62, 62, 62)
+                .addComponent(LabelLectura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -124,7 +176,7 @@ public class TestSensorIR extends javax.swing.JFrame {
     private void BotonGenerarQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGenerarQRActionPerformed
         // TODO add your handling code here:
         try {
-            Ventana ventana = new Ventana();
+            Ventana ventana = new Ventana(InfraR.linkQR);
             ventana.setVisible(true);
             
         } catch (WriterException ex) {
@@ -143,6 +195,12 @@ public class TestSensorIR extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_BotonIniciarActionPerformed
+
+    private void BotonDiagramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDiagramaActionPerformed
+        // TODO add your handling code here:
+        Diagrama conexion = new Diagrama(InfraR.diagrama);
+        conexion.setVisible(true);
+    }//GEN-LAST:event_BotonDiagramaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,11 +237,34 @@ public class TestSensorIR extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    public void tablaDatos(){
+
+        String matris [][] = new String [1][4];
+
+                matris[0][0]=InfraR.getTipo();
+                matris[0][2]=Integer.toString(InfraR.getFrecuencia()); 
+                matris[0][1]=Integer.toString(InfraR.getDist());
+                matris[0][3]=Integer.toString(InfraR.getAlimentacion());
+            
+          TablaDatos.setModel(new javax.swing.table.DefaultTableModel(
+            matris,
+            new String [] {
+                "Tipo de Sensor", "Longitud de onda (nm)", "Distancia Max (cm)", "Alimentacion (V)"
+            }
+        ));
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonDiagrama;
     private javax.swing.JButton BotonGenerarQR;
     private javax.swing.JButton BotonIniciar;
     private javax.swing.JLabel LabelLectura;
+    private javax.swing.JTable TablaDatos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
