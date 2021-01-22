@@ -145,7 +145,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="290" y="690" width="-1" height="-1"/>
+          <AbsoluteConstraints x="320" y="690" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -161,7 +161,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="430" y="690" width="-1" height="-1"/>
+          <AbsoluteConstraints x="450" y="690" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -360,6 +360,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="BotonDiagrama">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="URW Gothic L" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Diagrama"/>
       </Properties>
       <Events>
@@ -367,12 +370,15 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="180" y="680" width="90" height="50"/>
+          <AbsoluteConstraints x="180" y="690" width="120" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="BotonQR">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="URW Gothic L" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Generar QR"/>
       </Properties>
       <Events>
@@ -380,7 +386,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="60" y="682" width="-1" height="50"/>
+          <AbsoluteConstraints x="20" y="690" width="150" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

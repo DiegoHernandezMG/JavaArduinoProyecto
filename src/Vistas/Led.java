@@ -157,7 +157,7 @@ public class Led extends javax.swing.JFrame {
                 jButton_RegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 690, -1, -1));
+        getContentPane().add(jButton_Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 690, -1, -1));
 
         jButton_Salir.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         jButton_Salir.setText("SALIR");
@@ -166,7 +166,7 @@ public class Led extends javax.swing.JFrame {
                 jButton_SalirActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 690, -1, -1));
+        getContentPane().add(jButton_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 690, -1, -1));
 
         jLabel_MI.setFont(new java.awt.Font("URW Gothic L", 0, 24)); // NOI18N
         getContentPane().add(jLabel_MI, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, -1, -1));
@@ -247,21 +247,23 @@ public class Led extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/Midnight.png"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
+        BotonDiagrama.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         BotonDiagrama.setText("Diagrama");
         BotonDiagrama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonDiagramaActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonDiagrama, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 680, 90, 50));
+        getContentPane().add(BotonDiagrama, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 690, 120, -1));
 
+        BotonQR.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         BotonQR.setText("Generar QR");
         BotonQR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonQRActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonQR, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 682, -1, 50));
+        getContentPane().add(BotonQR, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 690, 150, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

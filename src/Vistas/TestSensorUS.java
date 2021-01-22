@@ -10,6 +10,7 @@ import com.panamahitek.ArduinoException;
 import com.panamahitek.PanamaHitek_Arduino;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.TableColumn;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
@@ -52,6 +53,15 @@ public class TestSensorUS extends javax.swing.JFrame {
             Logger.getLogger(TestSensorIR.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        TablaDatos.setAutoResizeMode(TablaDatos.AUTO_RESIZE_OFF);
+        TableColumn col2 = TablaDatos.getColumnModel().getColumn(0);
+        col2.setPreferredWidth(130);
+        col2 = TablaDatos.getColumnModel().getColumn(1);
+        col2.setPreferredWidth(130);
+        col2 = TablaDatos.getColumnModel().getColumn(2);
+        col2.setPreferredWidth(140);
+        col2 = TablaDatos.getColumnModel().getColumn(3);
+        col2.setPreferredWidth(130);
     }
 
     /**
@@ -72,12 +82,14 @@ public class TestSensorUS extends javax.swing.JFrame {
         TablaDatos = new javax.swing.JTable();
         BotonDiagrama = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(645, 290));
+        setPreferredSize(new java.awt.Dimension(770, 230));
         setSize(getPreferredSize());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        BotonoInciar.setFont(new java.awt.Font("URW Gothic L", 0, 16)); // NOI18N
         BotonoInciar.setText("Iniciar");
         BotonoInciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +97,7 @@ public class TestSensorUS extends javax.swing.JFrame {
             }
         });
 
+        BotonGenerarQR.setFont(new java.awt.Font("URW Gothic L", 0, 16)); // NOI18N
         BotonGenerarQR.setText("GenerarQR");
         BotonGenerarQR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +105,7 @@ public class TestSensorUS extends javax.swing.JFrame {
             }
         });
 
-        LabelDistancia.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        LabelDistancia.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         LabelDistancia.setText("Distancia: ");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -110,6 +123,7 @@ public class TestSensorUS extends javax.swing.JFrame {
         TablaDatos.setRowHeight(50);
         jScrollPane1.setViewportView(TablaDatos);
 
+        BotonDiagrama.setFont(new java.awt.Font("URW Gothic L", 0, 16)); // NOI18N
         BotonDiagrama.setText("Diagrama");
         BotonDiagrama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,10 +131,19 @@ public class TestSensorUS extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         jButton1.setText("REGRESAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
+        jButton2.setText("SALIR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -136,15 +159,21 @@ public class TestSensorUS extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LabelDistancia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BotonGenerarQR, javax.swing.GroupLayout.PREFERRED_SIZE, 99, Short.MAX_VALUE)
-                            .addComponent(BotonoInciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BotonDiagrama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
-                        .addGap(0, 32, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(LabelDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(26, 26, 26)
+                                .addComponent(jButton2))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(BotonoInciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BotonGenerarQR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BotonDiagrama, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 11, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -152,43 +181,64 @@ public class TestSensorUS extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
+                        .addGap(23, 23, 23)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
                         .addComponent(BotonoInciar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BotonGenerarQR)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BotonDiagrama)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(LabelDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(9, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1)
-                        .addGap(29, 29, 29))))
+                        .addComponent(jButton2))
+                    .addComponent(LabelDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 290));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 220));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Arduino.killArduinoConnection();
+        } catch (ArduinoException ex) {
+            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        MenuInicial Menu = new MenuInicial();
+        Menu.show();
+        this.hide();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BotonDiagramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDiagramaActionPerformed
+        // TODO add your handling code here:
+        Diagrama conexion = new Diagrama(UltraS.diagrama);
+        conexion.setVisible(true);
+
+    }//GEN-LAST:event_BotonDiagramaActionPerformed
+
     private void BotonGenerarQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGenerarQRActionPerformed
         // TODO add your handling code here:
-         try {
+        try {
             Ventana ventana = new Ventana(UltraS.linkQR);
-            
+
             ventana.setVisible(true);
-            
+
         } catch (WriterException ex) {
             Logger.getLogger(TestSensorIR.class.getName()).log(Level.SEVERE, null, ex);
-        
+
         }
     }//GEN-LAST:event_BotonGenerarQRActionPerformed
 
@@ -201,25 +251,6 @@ public class TestSensorUS extends javax.swing.JFrame {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BotonoInciarActionPerformed
-
-    private void BotonDiagramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDiagramaActionPerformed
-        // TODO add your handling code here:
-        Diagrama conexion = new Diagrama(UltraS.diagrama);
-        conexion.setVisible(true);
-        
-    }//GEN-LAST:event_BotonDiagramaActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            Arduino.killArduinoConnection();
-        } catch (ArduinoException ex) {
-            Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        MenuInicial Menu = new MenuInicial();
-        Menu.show();
-        this.hide();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,6 +314,7 @@ public class TestSensorUS extends javax.swing.JFrame {
     private javax.swing.JLabel LabelDistancia;
     private javax.swing.JTable TablaDatos;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

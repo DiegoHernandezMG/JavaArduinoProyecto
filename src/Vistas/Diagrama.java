@@ -5,6 +5,11 @@
  */
 package Vistas;
 
+import com.panamahitek.ArduinoException;
+import com.panamahitek.PanamaHitek_Arduino;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author David Yael Camarero Mota
@@ -12,6 +17,7 @@ package Vistas;
 public class Diagrama extends javax.swing.JFrame {
 
     public String link;
+    PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
     /**
      * Creates new form Diagrama
      */
@@ -21,7 +27,6 @@ public class Diagrama extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(Direccion))); // NOI18N
         getContentPane().add(jLabel1, java.awt.BorderLayout.CENTER);
-        
     }
 
     private Diagrama() {
@@ -38,15 +43,53 @@ public class Diagrama extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(570, 400));
+        setPreferredSize(new java.awt.Dimension(980, 540));
+        setSize(getPreferredSize());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/Conexion sensor US.png"))); // NOI18N
-        getContentPane().add(jLabel1, java.awt.BorderLayout.CENTER);
+
+        jButton2.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
+        jButton2.setText("CERRAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(391, 391, 391))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(37, 37, 37))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.hide();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -85,6 +128,7 @@ public class Diagrama extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
     public static javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 

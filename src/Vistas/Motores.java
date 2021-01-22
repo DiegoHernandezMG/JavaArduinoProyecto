@@ -19,11 +19,11 @@ import jssc.SerialPortException;
  */
 public class Motores extends javax.swing.JFrame {
 
-    Componente Motor = new Componente("https://www.steren.com.mx/mini-motor-de-corriente-directa.html","/Imágenes/Conexion Motor.jpeg","datasheet",5);
+    Componente Motor = new Componente("https://www.steren.com.mx/mini-motor-de-corriente-directa.html", "/Imágenes/Conexion Motor.jpeg", "datasheet", 5);
     int PWM_I = 0, PWM_D = 0, PWM_J = 0;
     String OutputPWM_I, OutputPWM_D, OutputPWM_J;
     PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
-    
+
     public Motores() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -33,12 +33,12 @@ public class Motores extends javax.swing.JFrame {
         } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         jLabel5.setEnabled(false);
         jLabel_PWM_JUNT.setEnabled(false);
         jSlider_PWM_JUNT.setEnabled(false);
         jSlider_PWM_JUNT.setValue(0);
-        
+
         jLabel3.setEnabled(false);
         jLabel_PWM_IZQ.setEnabled(false);
         jSlider_PWM_IZQ.setEnabled(false);
@@ -166,7 +166,7 @@ public class Motores extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 590, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 590, -1, -1));
 
         jButton2.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         jButton2.setText("REGRESAR");
@@ -175,7 +175,7 @@ public class Motores extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 590, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 590, -1, -1));
 
         BotonDiagrana.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         BotonDiagrana.setText("Diagrama");
@@ -185,7 +185,7 @@ public class Motores extends javax.swing.JFrame {
                 BotonDiagranaActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonDiagrana, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, 120, -1));
+        getContentPane().add(BotonDiagrana, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 590, 120, -1));
 
         BotonQR.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         BotonQR.setText("GenerarQR");
@@ -200,20 +200,19 @@ public class Motores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggle_MOT_INDIVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggle_MOT_INDIVActionPerformed
-        if(jToggle_MOT_INDIV.isSelected()){
+        if (jToggle_MOT_INDIV.isSelected()) {
             jLabel5.setEnabled(false);
             jLabel_PWM_JUNT.setEnabled(false);
             jSlider_PWM_JUNT.setEnabled(false);
             jSlider_PWM_JUNT.setValue(0);
-            
+
             jLabel3.setEnabled(true);
             jLabel_PWM_IZQ.setEnabled(true);
             jSlider_PWM_IZQ.setEnabled(true);
             jLabel4.setEnabled(true);
             jLabel_PWM_DER.setEnabled(true);
             jSlider_PWM_DER.setEnabled(true);
-        }
-        else{
+        } else {
             /*jToggle_MOT_JUNT.setEnabled(true);
             jLabel5.setEnabled(true);
             jLabel_PWM_JUNT.setEnabled(true);
@@ -221,17 +220,17 @@ public class Motores extends javax.swing.JFrame {
             jLabel6.setEnabled(true);
             jLabel8.setEnabled(true);
             jToggle_INV_JUNT.setEnabled(true);*/
-            
+
             jLabel3.setEnabled(false);
             jLabel_PWM_IZQ.setEnabled(false);
             jSlider_PWM_IZQ.setEnabled(false);
             jLabel4.setEnabled(false);
             jLabel_PWM_DER.setEnabled(false);
             jSlider_PWM_DER.setEnabled(false);
-            
+
             try {
-            System.out.println("S");
-            Arduino.sendData("S");
+                System.out.println("S");
+                Arduino.sendData("S");
             } catch (ArduinoException ex) {
                 Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SerialPortException ex) {
@@ -241,7 +240,7 @@ public class Motores extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggle_MOT_INDIVActionPerformed
 
     private void jToggle_MOT_JUNTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggle_MOT_JUNTActionPerformed
-        if(jToggle_MOT_JUNT.isSelected()){
+        if (jToggle_MOT_JUNT.isSelected()) {
             jLabel3.setEnabled(false);
             jLabel_PWM_IZQ.setEnabled(false);
             jSlider_PWM_IZQ.setEnabled(false);
@@ -250,12 +249,11 @@ public class Motores extends javax.swing.JFrame {
             jSlider_PWM_DER.setEnabled(false);
             jSlider_PWM_IZQ.setValue(0);
             jSlider_PWM_DER.setValue(0);
-            
+
             jLabel5.setEnabled(true);
             jLabel_PWM_JUNT.setEnabled(true);
             jSlider_PWM_JUNT.setEnabled(true);
-        }
-        else{
+        } else {
             /*jToggle_MOT_INDIV.setEnabled(true);
             jLabel3.setEnabled(true);
             jLabel_PWM_IZQ.setEnabled(true);
@@ -269,15 +267,15 @@ public class Motores extends javax.swing.JFrame {
             jLabel2.setEnabled(true);
             jLabel7.setEnabled(true);
             jToggle_INV_DER.setEnabled(true);*/
-            
+
             jLabel5.setEnabled(false);
             jLabel_PWM_JUNT.setEnabled(false);
             jSlider_PWM_JUNT.setEnabled(false);
             jSlider_PWM_JUNT.setValue(0);
-            
+
             try {
-            System.out.println("S");
-            Arduino.sendData("S");
+                System.out.println("S");
+                Arduino.sendData("S");
             } catch (ArduinoException ex) {
                 Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SerialPortException ex) {
@@ -290,15 +288,15 @@ public class Motores extends javax.swing.JFrame {
         PWM_I = jSlider_PWM_IZQ.getValue();
         String Value_PWM_I = Integer.toString(PWM_I);
         jLabel_PWM_IZQ.setText(Value_PWM_I);
-        
+
         if (PWM_I < 10) {
-        OutputPWM_I = "P" + "00" + PWM_I;
+            OutputPWM_I = "P" + "00" + PWM_I;
         } else if (PWM_I < 100) {
-        OutputPWM_I = "P" + "0" + PWM_I;
+            OutputPWM_I = "P" + "0" + PWM_I;
         } else {
-        OutputPWM_I = "P" + PWM_I;
+            OutputPWM_I = "P" + PWM_I;
         }
-        
+
         try {
             System.out.println(OutputPWM_I);
             Arduino.sendData(OutputPWM_I);
@@ -313,15 +311,15 @@ public class Motores extends javax.swing.JFrame {
         PWM_D = jSlider_PWM_DER.getValue();
         String Value_PWM_D = Integer.toString(PWM_D);
         jLabel_PWM_DER.setText(Value_PWM_D);
-        
+
         if (PWM_D < 10) {
-        OutputPWM_D = "W" + "00" + PWM_D;
+            OutputPWM_D = "W" + "00" + PWM_D;
         } else if (PWM_D < 100) {
-        OutputPWM_D = "W" + "0" + PWM_D;
+            OutputPWM_D = "W" + "0" + PWM_D;
         } else {
-        OutputPWM_D = "W" + PWM_D;
+            OutputPWM_D = "W" + PWM_D;
         }
-        
+
         try {
             System.out.println(OutputPWM_D);
             Arduino.sendData(OutputPWM_D);
@@ -336,15 +334,15 @@ public class Motores extends javax.swing.JFrame {
         PWM_J = jSlider_PWM_JUNT.getValue();
         String Value_PWM_J = Integer.toString(PWM_J);
         jLabel_PWM_JUNT.setText(Value_PWM_J);
-        
+
         if (PWM_J < 10) {
-        OutputPWM_J = "J" + "00" + PWM_J;
+            OutputPWM_J = "J" + "00" + PWM_J;
         } else if (PWM_J < 100) {
-        OutputPWM_J = "J" + "0" + PWM_J;
+            OutputPWM_J = "J" + "0" + PWM_J;
         } else {
-        OutputPWM_J = "J" + PWM_J;
+            OutputPWM_J = "J" + PWM_J;
         }
-        
+
         try {
             System.out.println(OutputPWM_J);
             Arduino.sendData(OutputPWM_J);
@@ -365,7 +363,7 @@ public class Motores extends javax.swing.JFrame {
         } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         MenuInicial Menu = new MenuInicial();
         Menu.show();
         this.hide();
@@ -381,12 +379,12 @@ public class Motores extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Ventana ventana = new Ventana(Motor.linkQR);
-            
+
             ventana.setVisible(true);
-            
+
         } catch (WriterException ex) {
             Logger.getLogger(TestSensorIR.class.getName()).log(Level.SEVERE, null, ex);
-        
+
         }
     }//GEN-LAST:event_BotonQRActionPerformed
 
