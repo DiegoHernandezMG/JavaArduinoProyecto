@@ -5,10 +5,12 @@
  */
 package Vistas;
 
+import com.google.zxing.WriterException;
 import com.panamahitek.ArduinoException;
 import com.panamahitek.PanamaHitek_Arduino;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javaarduinoproyecto.Componente;
 import jssc.SerialPortException;
 
 /**
@@ -17,6 +19,7 @@ import jssc.SerialPortException;
  */
 public class Motores extends javax.swing.JFrame {
 
+    Componente Motor = new Componente("https://www.steren.com.mx/mini-motor-de-corriente-directa.html","/Imágenes/Conexion Motor.jpeg","datasheet",5);
     int PWM_I = 0, PWM_D = 0, PWM_J = 0;
     String OutputPWM_I, OutputPWM_D, OutputPWM_J;
     PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
@@ -69,6 +72,8 @@ public class Motores extends javax.swing.JFrame {
         jLabel_PWM_JUNT = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        BotonDiagrana = new javax.swing.JButton();
+        BotonQR = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(485, 655));
@@ -171,6 +176,23 @@ public class Motores extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 590, -1, -1));
+
+        BotonDiagrana.setText("Diagrama");
+        BotonDiagrana.setToolTipText("");
+        BotonDiagrana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonDiagranaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotonDiagrana, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 590, -1, -1));
+
+        BotonQR.setText("GenerarQR");
+        BotonQR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonQRActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotonQR, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -347,6 +369,25 @@ public class Motores extends javax.swing.JFrame {
         this.hide();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void BotonDiagranaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDiagranaActionPerformed
+        // TODO add your handling code here:
+        Diagrama conexion = new Diagrama(Motor.diagrama);
+        conexion.setVisible(true);
+    }//GEN-LAST:event_BotonDiagranaActionPerformed
+
+    private void BotonQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonQRActionPerformed
+        // TODO add your handling code here:
+        try {
+            Ventana ventana = new Ventana(Motor.linkQR);
+            
+            ventana.setVisible(true);
+            
+        } catch (WriterException ex) {
+            Logger.getLogger(TestSensorIR.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }
+    }//GEN-LAST:event_BotonQRActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -383,6 +424,8 @@ public class Motores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonDiagrana;
+    private javax.swing.JButton BotonQR;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
