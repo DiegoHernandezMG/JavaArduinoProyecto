@@ -28,7 +28,7 @@ public class Led extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         try {
             Arduino.getPortsAvailable();
-            Arduino.arduinoTX("/dev/ttyUSB1", 9600);
+            Arduino.arduinoTX("/dev/ttyUSB0", 9600);
         } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -29,7 +29,7 @@ public class Motores extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         try {
             Arduino.getPortsAvailable();
-            Arduino.arduinoTX("/dev/ttyUSB1", 9600);
+            Arduino.arduinoTX("/dev/ttyUSB0", 9600);
         } catch (ArduinoException ex) {
             Logger.getLogger(Led.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -166,7 +166,7 @@ public class Motores extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 590, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 590, -1, -1));
 
         jButton2.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         jButton2.setText("REGRESAR");
@@ -175,8 +175,9 @@ public class Motores extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 590, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 590, -1, -1));
 
+        BotonDiagrana.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         BotonDiagrana.setText("Diagrama");
         BotonDiagrana.setToolTipText("");
         BotonDiagrana.addActionListener(new java.awt.event.ActionListener() {
@@ -184,15 +185,16 @@ public class Motores extends javax.swing.JFrame {
                 BotonDiagranaActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonDiagrana, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 590, -1, -1));
+        getContentPane().add(BotonDiagrana, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, 120, -1));
 
+        BotonQR.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         BotonQR.setText("GenerarQR");
         BotonQR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonQRActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonQR, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, -1, -1));
+        getContentPane().add(BotonQR, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 150, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
